@@ -96,7 +96,7 @@ void add_tail(l_l *head){
 
 void change_k(l_l *head, int k) {
   struct l_l *x=head;
-  for (int i = 1; i < k , x!=NULL, x->next!=NULL; i++) {
+  for (int i = 1; i < k-1 , x!=NULL, x->next!=NULL; i++) {
     x=x->next;
   }
   printf("Enter changed name of product\n");
@@ -143,11 +143,11 @@ void count_firm(struct l_l *head) {
 
 void swap(l_l *head, int k, int j){
   struct l_l *x=head, *a, *b, *t;
-  for (int i = 1; i < k, x; i++) {
+  for (int i = 1; i < k-1, x; i++) {
     x=x->next;
   }
   a=x;
-  for (int i = k; i < j, x; i++) {
+  for (int i = k-1; i < j-1, x; i++) {
     x=x->next;
   }
   b=x;
