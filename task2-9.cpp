@@ -117,14 +117,13 @@ class Exhibit
 			
 };
 
-Exhibit::Exhibit(const char*name, int l, int w, int h, Address adr)
+Exhibit::Exhibit(const char*name, int l, int w, int h, Address adr):address(adr)
 {
 	this->name = new char[strlen(name)];
 	strcpy(this->name,name);
 	this->length = l;
 	this->width = w;
 	this->height = h;
-	this->address = adr;
 }
 
 Exhibit::~Exhibit()
@@ -156,14 +155,6 @@ Exhibit& Exhibit::setName(const char* name)
 	strcpy(this->name,name);
 	return *this;
 }
-
-Exhibit& Exhibit::setAddress(const Address adr)
-{
-	this->address = adr;
-	return *this;
-}
-
-
 
 
 
