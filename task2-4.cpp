@@ -183,11 +183,9 @@ Koor::~Koor()
 int main()
 {
 	setlocale(LC_ALL, "RUS");
-
 	char Day[40], Mounth[40];
 	int Year, num;
 	double vx, vy;
-
 	Date q1;
 	cout << "Enter day" << endl;
 	cin >> Day;
@@ -200,7 +198,6 @@ int main()
 	q1.Print();
 	q2.Print2();
 	q3.Print();
-
 	Koor k1;
 	cout << "Enter X" << endl;
 	cin >> vx;
@@ -213,5 +210,4 @@ int main()
 	k1.Print();
 	k2.Print2();
 	k3.Print();
-
 }
