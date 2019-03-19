@@ -49,7 +49,8 @@ public:
     strcpy(this->name, n);
     this->surname = new char[strlen(n) + 1];
     strcpy(this->surname, s);
-    this->p = Poem();
+    this->p = poem;
+    this->p.setTitle(poem.getTitle());
   }
   void setName(char *n) {
     name = new char[strlen(n)];
