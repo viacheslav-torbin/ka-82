@@ -52,21 +52,21 @@ public:
 
 Coor::Coor(double valueX, double valueY)
 {
-	cout << "ß êîíñòðóêòîð Coor" << endl;
+	cout << "ÃŸ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Coor" << endl;
 	x = valueX;
 	y = valueY;
 }
 
 Coor::Coor()
 {
-	cout << "ß êîíñòðóêòîð Coor" << endl;
+	cout << "ÃŸ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Coor" << endl;
 	x = 0;
 	y = 0;
 }
 
 Coor::~Coor()
 {
-	cout << "ß äåñòðóêòîð Coor" << endl;
+	cout << "ÃŸ Ã¤Ã¥Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Coor" << endl;
 }
 
 class ExistenceLifeForm
@@ -160,19 +160,19 @@ protected:
 
 Creature::Creature()
 {
-	cout << "ÿ êîíñòðóêòîð Creature" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Creature" << endl;
 	this->LifeStatus = 1;
 }
 
 Creature::Creature(char * dataN, int valueA, double valueX, double valueY):ExistenceLifeForm(dataN,valueA,valueX,valueY)
 {
-	cout << "ÿ êîíñòðóêòîð Creature" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Creature" << endl;
 	this->LifeStatus = 1;
 }
 
 Creature::Creature(Creature & other) 
 {
-	cout << "ÿ êîíñòðóêòîð Creature" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Creature" << endl;
 	this->Age = other.Age;
 	this->Name = other.Name;
 	this->Coordinat = other.Coordinat;
@@ -181,7 +181,7 @@ Creature::Creature(Creature & other)
 
 Creature::~Creature()
 {
-	cout << "ÿ äåêîíñòðóêòîð Creature" << endl;
+	cout << "Ã¿ Ã¤Ã¥ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Creature" << endl;
 }
 
 class Plant: public ExistenceLifeForm
@@ -200,17 +200,17 @@ public:
 
 Plant::Plant(char * dataN, int valueA, double valueX, double valueY):ExistenceLifeForm(dataN,valueA,valueX,valueY)
 {
-	cout << "ÿ êîíñòðóêòîð Plant" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Plant" << endl;
 }
 
 Plant::Plant()
 {
-	cout << "ÿ êîíñòðóêòîð Plant" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Plant" << endl;
 }
 
 Plant::Plant(Plant & other)
 {
-	cout << "ÿ êîíñòðóêòîð Plant" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Plant" << endl;
 	this->Age = other.Age;
 	this->Name = other.Name;
 	this->Coordinat = other.Coordinat;
@@ -218,7 +218,7 @@ Plant::Plant(Plant & other)
 
 Plant::~Plant()
 {
-	cout << "ÿ äåêîíñòðóêòîð Plant" << endl;
+	cout << "Ã¿ Ã¤Ã¥ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Plant" << endl;
 }
 
 class UnMovedObject : public ExistenceLifeForm 
@@ -240,12 +240,12 @@ public:
 
 UnMovedObject::UnMovedObject()
 {
-	cout << "ÿ êîíñòðóêòîð UnMovedObject" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° UnMovedObject" << endl;
 }
 
 UnMovedObject::UnMovedObject(char * dataN, int valueA, double valueX, double valueY) : ExistenceLifeForm(dataN, valueA, valueX, valueY)
 {
-	cout << "ÿ êîíñòðóêòîð UnMovedObject" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° UnMovedObject" << endl;
 }
 
 UnMovedObject::UnMovedObject(UnMovedObject &other)
@@ -253,12 +253,12 @@ UnMovedObject::UnMovedObject(UnMovedObject &other)
 	this->Age = other.Age;
 	this->Name = other.Name;
 	this->Coordinat = other.Coordinat;
-	cout << "ÿ êîíñòðóêòîð UnMovedObject" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° UnMovedObject" << endl;
 }
 
 UnMovedObject::~UnMovedObject()
 {
-	cout << "ÿ äåêîíñòðóêòîð UnMovedObject" << endl;
+	cout << "Ã¿ Ã¤Ã¥ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° UnMovedObject" << endl;
 }
 
 class Herbivorous : public ExistenceLifeForm
@@ -283,12 +283,12 @@ private:
 Herbivorous::Herbivorous()
 {
 	this->MaxAgeHerbivous = 50;
-	cout << "ÿ êîíñòðóêòîð Herbivorous" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Herbivorous" << endl;
 }
 
 Herbivorous::Herbivorous(char * dataN, int valueA, double valueX, double valueY) : ExistenceLifeForm(dataN, valueA, valueX, valueY)
 {
-	cout << "ÿ êîíñòðóêòîð Herbivorous" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Herbivorous" << endl;
 }
 
 Herbivorous::Herbivorous(Herbivorous &other)
@@ -296,12 +296,12 @@ Herbivorous::Herbivorous(Herbivorous &other)
 	this->Age = other.Age;
 	this->Name = other.Name;
 	this->Coordinat = other.Coordinat;
-	cout << "ÿ êîíñòðóêòîð Herbivorous" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Herbivorous" << endl;
 }
 
 Herbivorous::~Herbivorous()
 {
-	cout << "ÿ äåñòðóêòîð Herbivorous" << endl;
+	cout << "Ã¿ Ã¤Ã¥Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Herbivorous" << endl;
 }
 
 class Predator : public ExistenceLifeForm
@@ -326,12 +326,12 @@ private:
 Predator::Predator()
 {
 	this->MaxAgePredator = 100;
-	cout << "ÿ êîíñòðóêòîð Predator" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Predator" << endl;
 }
 
 Predator::Predator(char * dataN, int valueA, double valueX, double valueY) : ExistenceLifeForm(dataN, valueA, valueX, valueY)
 {
-	cout << "ÿ êîíñòðóêòîð Predator" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Predator" << endl;
 }
 
 Predator::Predator(Predator &other)
@@ -339,12 +339,12 @@ Predator::Predator(Predator &other)
 	this->Age = other.Age;
 	this->Name = other.Name;
 	this->Coordinat = other.Coordinat;
-	cout << "ÿ êîíñòðóêòîð Predator" << endl;
+	cout << "Ã¿ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Predator" << endl;
 }
 
 Predator::~Predator()
 {
-	cout << "ÿ äåñòðóêòîð Predator" << endl;
+	cout << "Ã¿ Ã¤Ã¥Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Predator" << endl;
 }
 
 void main()
