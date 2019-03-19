@@ -105,6 +105,7 @@ void change_k(l_l *head, int k) {
   scanf("%f", &x->prod.price);
   printf("Enter changed name of firm\n");
   scanf("%s", x->prod.firm);
+  delete x;
 }
 
 void print_list(l_l *head) {
@@ -143,11 +144,11 @@ void count_firm(struct l_l *head) {
 
 void swap(l_l *head, int k, int j){
   struct l_l *x=head, *a, *b, *t;
-  for (int i = 1; i < k-1, x; i++) {
+  for (int i = 0; i < k, x; i++) {
     x=x->next;
   }
   a=x;
-  for (int i = k-1; i < j-1, x; i++) {
+  for (int i = k-1; i < j, x; i++) {
     x=x->next;
   }
   b=x;
