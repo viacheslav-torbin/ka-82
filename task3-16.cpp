@@ -9,7 +9,7 @@ private:
 
 public:
   Poem();
-  Poem(char *, int, int);
+  // Poem(char *, int, int);
   Poem(const Poem &p) : Poem(p.title, p.size, p.payment){};
   char *getTitle() { return title; };
   int getSize() { return size; };
