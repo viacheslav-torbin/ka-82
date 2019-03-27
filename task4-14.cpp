@@ -37,7 +37,7 @@ public:
 
 	void Print()
 	{
-		cout << "x =\t" << x << "\t" << "y =\t" << y << endl;
+		cout << "(" << x << "," << y << ")" << endl;
 	}
 
 	Coor(const Coor &other)
@@ -46,27 +46,28 @@ public:
 		this->y = other.y;
 	}
 
+	bool operator == (const Coor & other)
+	{
+		return ((this->x == other.x) && (this->y == other.y));
+	}
 public:
 	double x, y;
 };
 
 Coor::Coor(double valueX, double valueY)
 {
-	cout << "ß êîíñòðóêòîð Coor" << endl;
 	x = valueX;
 	y = valueY;
 }
 
 Coor::Coor()
 {
-	cout << "ß êîíñòðóêòîð Coor" << endl;
 	x = 0;
 	y = 0;
 }
 
 Coor::~Coor()
 {
-	cout << "ß äåñòðóêòîð Coor" << endl;
 }
 
 class ExistenceLifeForm
@@ -107,7 +108,6 @@ ExistenceLifeForm::ExistenceLifeForm(char* dataN, int valueA, double valueX, dou
 	this->Name = new char[strlen(dataN) + 1];
 	strcpy(this->Name, dataN);
 	Age = valueA;
-	cout << "ß êîíñòðóêòîð ëàéâôîðì" << endl;
 }
 
 ExistenceLifeForm::ExistenceLifeForm() :Coordinat(0, 0)
@@ -115,12 +115,10 @@ ExistenceLifeForm::ExistenceLifeForm() :Coordinat(0, 0)
 	this->Name = new char[7];
 	strcpy(Name, "noname");
 	Age = 0;
-	cout << "ß êîíñòðóêòîð ëàéâôîðì" << endl;
 }
 
 ExistenceLifeForm::~ExistenceLifeForm()
 {
-	cout << "ß äåñòðóêòîð ëàéâôîðì" << endl;
 	delete[] Name;
 }
 
@@ -134,7 +132,7 @@ public:
 
 	void Print()
 	{
-		cout << Name << "\t" << Age << "\t"<<LifeStatus;
+		cout << Name << "\t" << Age << "\t" << LifeStatus;
 		this->Coordinat.Print();
 		cout << endl;
 	}
@@ -145,31 +143,28 @@ public:
 
 Creature::Creature()
 {
-	cout << "ÿ êîíñòðóêòîð Creature" << endl;
 	this->LifeStatus = 1;
 }
 
-Creature::Creature(char * dataN, int valueA, double valueX, double valueY):ExistenceLifeForm(dataN,valueA,valueX,valueY)
+Creature::Creature(char * dataN, int valueA, double valueX, double valueY) :ExistenceLifeForm(dataN, valueA, valueX, valueY)
 {
-	cout << "ÿ êîíñòðóêòîð Creature" << endl;
 	this->LifeStatus = 1;
 }
 
 Creature::Creature(Creature & other)
 {
-	cout << "ÿ êîíñòðóêòîð Creature" << endl;
+	this->Name = new char[strlen(other.Name) + 1];
 	this->Age = other.Age;
-	this->Name = other.Name;
+	strcpy(this->Name, other.Name);
 	this->Coordinat = other.Coordinat;
 	this->LifeStatus = 1;
 }
 
 Creature::~Creature()
 {
-	cout << "ÿ äåêîíñòðóêòîð Creature" << endl;
 }
 
-class Plant: public ExistenceLifeForm
+class Plant : public ExistenceLifeForm
 {
 public:
 	Plant(char * dataN, int valueA, double valueX, double valueY);
@@ -187,27 +182,24 @@ public:
 	}
 };
 
-Plant::Plant(char * dataN, int valueA, double valueX, double valueY):ExistenceLifeForm(dataN,valueA,valueX,valueY)
+Plant::Plant(char * dataN, int valueA, double valueX, double valueY) :ExistenceLifeForm(dataN, valueA, valueX, valueY)
 {
-	cout << "ÿ êîíñòðóêòîð Plant" << endl;
 }
 
 Plant::Plant()
 {
-	cout << "ÿ êîíñòðóêòîð Plant" << endl;
 }
 
 Plant::Plant(Plant & other)
 {
-	cout << "ÿ êîíñòðóêòîð Plant" << endl;
+	this->Name = new char[strlen(other.Name) + 1];
 	this->Age = other.Age;
-	this->Name = other.Name;
+	strcpy(this->Name, other.Name);
 	this->Coordinat = other.Coordinat;
 }
 
 Plant::~Plant()
 {
-	cout << "ÿ äåêîíñòðóêòîð Plant" << endl;
 }
 
 class UnMovedObject : public ExistenceLifeForm
@@ -217,6 +209,11 @@ public:
 	UnMovedObject(char * dataN, int valueA, double valueX, double valueY);
 	UnMovedObject(UnMovedObject &other);
 	~UnMovedObject();
+
+	bool operator == (const UnMovedObject & other1)
+	{
+		return ((this->Age == other1.Age) && (this->Coordinat == other1.Coordinat) && !(strcmp(this->Name, other1.Name)));
+	}
 
 	void Move()
 	{
@@ -233,26 +230,25 @@ public:
 
 UnMovedObject::UnMovedObject()
 {
-	cout << "ÿ êîíñòðóêòîð UnMovedObject" << endl;
 }
 
 UnMovedObject::UnMovedObject(char * dataN, int valueA, double valueX, double valueY) : ExistenceLifeForm(dataN, valueA, valueX, valueY)
 {
-	cout << "ÿ êîíñòðóêòîð UnMovedObject" << endl;
 }
 
 UnMovedObject::UnMovedObject(UnMovedObject &other)
 {
+	this->Name = new char[strlen(other.Name) + 1];
 	this->Age = other.Age;
-	this->Name = other.Name;
+	strcpy(this->Name, other.Name);
 	this->Coordinat = other.Coordinat;
-	cout << "ÿ êîíñòðóêòîð UnMovedObject" << endl;
 }
 
 UnMovedObject::~UnMovedObject()
 {
-	cout << "ÿ äåêîíñòðóêòîð UnMovedObject" << endl;
 }
+
+class Predator;
 
 class Herbivorous : public Creature
 {
@@ -261,7 +257,9 @@ public:
 	Herbivorous(char * dataN, int valueA, double valueX, double valueY);
 	Herbivorous(Herbivorous &other);
 	~Herbivorous();
+	friend void operator - (Herbivorous& Her, Predator& Pre);
 
+	friend Predator;
 	void Move()
 	{
 		this->Coordinat.x++;
@@ -279,36 +277,53 @@ public:
 
 	void Print()
 	{
-		cout << Name << "\t" << Age << "\t";
+		cout << this->Name << "\t" << this->Age << "\t" << this->LifeStatus << endl;
 		this->Coordinat.Print();
 		cout << endl;
 	}
 
+	Herbivorous& operator ++()
+	{
+		this->Age++;
+
+		return *this;
+	}
+
+	Herbivorous operator ++(int value)
+	{
+		Herbivorous temp(*this);
+		this->Age++;
+
+		return temp;
+	}
+
+
+	friend ostream& operator<< (ostream& out, Herbivorous& outstream);
+	friend istream& operator>> (istream& in, Herbivorous& instream);
+
+protected:
 	static int MaxAgeHerbivous;
 };
 
 Herbivorous::Herbivorous()
 {
 	this->MaxAgeHerbivous = 50;
-	cout << "ÿ êîíñòðóêòîð Herbivorous" << endl;
 }
 
 Herbivorous::Herbivorous(char * dataN, int valueA, double valueX, double valueY) : Creature(dataN, valueA, valueX, valueY)
 {
-	cout << "ÿ êîíñòðóêòîð Herbivorous" << endl;
 }
 
 Herbivorous::Herbivorous(Herbivorous &other)
 {
+	this->Name = new char[strlen(other.Name) + 1];
 	this->Age = other.Age;
-	this->Name = other.Name;
+	strcpy(this->Name, other.Name);
 	this->Coordinat = other.Coordinat;
-	cout << "ÿ êîíñòðóêòîð Herbivorous" << endl;
 }
 
 Herbivorous::~Herbivorous()
 {
-	cout << "ÿ äåñòðóêòîð Herbivorous" << endl;
 }
 
 int Herbivorous::MaxAgeHerbivous = 50;
@@ -321,12 +336,16 @@ public:
 	Predator(Predator &other);
 	~Predator();
 
+	friend void operator - (Herbivorous& Her, Predator& Pre);
+
 	void Print()
 	{
-		cout << Name << "\t" << Age ;
+		cout << this->Name << "\t" << this->Age << "\t" << this->LifeStatus << endl;
 		this->Coordinat.Print();
 		cout << endl;
 	}
+
+	friend Herbivorous;
 
 	void Move()
 	{
@@ -343,51 +362,117 @@ public:
 		}
 	}
 
+	Predator& operator ++()
+	{
+		this->Age++;
+		return *this;
+	}
+
+	Predator operator ++(int value)
+	{
+		Predator temp(*this);
+		this->Age++;
+		return temp;
+	}
+
+	friend ostream& operator<< (ostream& out, Predator& outstream);
+	friend istream& operator>> (istream& in, Predator& instream);
+protected:
 	static int MaxAgePredator;
 };
 
+int Predator::MaxAgePredator = 100;
+
 Predator::Predator()
 {
-	this->MaxAgePredator = 100;
-	cout << "ÿ êîíñòðóêòîð Predator" << endl;
 }
 
 Predator::Predator(char * dataN, int valueA, double valueX, double valueY) : Creature(dataN, valueA, valueX, valueY)
 {
-	cout << "ÿ êîíñòðóêòîð Predator" << endl;
+	
 }
 
 Predator::Predator(Predator &other)
 {
+	this->Name = new char[strlen(other.Name) + 1];
 	this->Age = other.Age;
-	this->Name = other.Name;
+	strcpy(this->Name, other.Name);
 	this->Coordinat = other.Coordinat;
-	cout << "ÿ êîíñòðóêòîð Predator" << endl;
 }
 
 Predator::~Predator()
 {
-	cout << "ÿ äåñòðóêòîð Predator" << endl;
 }
 
-int Predator::MaxAgePredator = 100;
+ostream& operator << (ostream& out, Predator& outstream) {
+	out << "Name: " << outstream.Name << endl;
+	out << "Age: " << outstream.Age << endl;
+	out << "(" << outstream.Coordinat.x << "," << outstream.Coordinat.y << ")" << endl;
+	return out;
+}
+
+istream& operator >> (istream& in, Predator& instream) {
+	cout << "Name" << endl;
+	cout << "Age" << endl;
+	cout << "x" << endl;
+	cout << "y" << endl;
+	in >> instream.Name;
+	in >> instream.Age;
+	in >> instream.Coordinat.x;
+	in >> instream.Coordinat.y;
+	return in;
+}
+
+ostream& operator << (ostream& out, Herbivorous& outstream) {
+	out << "Name: " << outstream.Name << endl;
+	out << "Age: " << outstream.Age << endl;
+	out << "(" << outstream.Coordinat.x << "," << outstream.Coordinat.y << ")" << endl;
+	return out;
+}
+
+istream& operator >> (istream& in, Herbivorous& instream) {
+	cout << "Name" << endl;
+	cout << "Age" << endl;
+	cout << "x" << endl;
+	cout << "y" << endl;
+	in >> instream.Name;
+	in >> instream.Age;
+	in >> instream.Coordinat.x;
+	in >> instream.Coordinat.y;
+	return in;
+}
+
+void operator-(Herbivorous & Her, Predator & Pre)
+{
+	Her.LifeStatus = 0;
+	Pre.Age++;
+}
 
 int main()
 {
 	setlocale(LC_ALL, "Rus");
 
-	Plant P1;
-	P1.Move();
-
 	UnMovedObject Un1;
-	Un1.Move();
+	UnMovedObject Un2(Un1);
+	bool b = (Un1 == Un2);
+	cout << "Operator ==" << b << endl;
+	cout << endl << "End UnMovedObject test" << endl << endl;
 
 	Predator Pre1;
 	Pre1.Print();
-	Pre1.Move();
+	Pre1++;
+	Pre1.Print();
+	cin >> Pre1;
+	cout << Pre1;
+	cout << endl << "End Predator test" << endl << endl;
 
-	Herbivorous H1;
-	H1.Print();
+	Herbivorous Her;
+	Her.Print();
+	Her++;
+	Her.Print();
+	cin >> Her;
+	cout << Her;
+	cout << endl << "End Herbivorous test" << endl << endl;
 
 	return 0;
 }
