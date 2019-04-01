@@ -50,7 +50,7 @@ public:
 
 	Nota(const Nota &other)
 	{
-		cout << "ß êîíñòðóêòîð Íîòà" << endl;
+		cout << "ÃŸ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° ÃÃ®Ã²Ã " << endl;
 		this->Name = other.Name;
 		this->Oktava = other.Oktava;
 		this->lenght = other.lenght;
@@ -74,7 +74,7 @@ protected:
 
 Nota::Nota(string dataN, string dataO, int valueL)
 {
-	cout << "ß êîíñòðóêòîð Íîòà" << endl;
+	cout << "ÃŸ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° ÃÃ®Ã²Ã " << endl;
 	this->Name = dataN;
 	this->Oktava = dataO;
 	lenght = valueL;
@@ -82,7 +82,7 @@ Nota::Nota(string dataN, string dataO, int valueL)
 
 Nota::Nota()
 {
-	cout << "ß êîíñòðóêòîð Íîòà" << endl;
+	cout << "ÃŸ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° ÃÃ®Ã²Ã " << endl;
 	this->Name = "noname";
 	this->Oktava = "noname";
 	lenght = 0;
@@ -90,7 +90,7 @@ Nota::Nota()
 
 Nota::~Nota()
 {
-	cout << "ß deñòðóêòîð Íîòà" << endl;
+	cout << "ÃŸ deÃ±Ã²Ã°Ã³ÃªÃ²Ã®Ã° ÃÃ®Ã²Ã " << endl;
 }
 
 class Voice: public Nota
@@ -115,26 +115,26 @@ Voice::Voice()
 {
 	this->Number = 0;
 	Frequency = 0;
-	cout << "ß êîíñòðóêòîð Voice" << endl;
+	cout << "ÃŸ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Voice" << endl;
 }
 
 Voice::Voice(double Frequency,int Number, string dataN, string dataO, int valueL):Nota(dataN,dataO,valueL)
 {
 	this->Number = Number;
 	this->Frequency = Frequency;
-	cout << "ß êîíñòðóêòîð Voice" << endl;
+	cout << "ÃŸ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Voice" << endl;
 }
 
 Voice::Voice(const Voice & other):Nota(other.Name,other.Oktava,other.lenght)
 {
 	this->Number = other.Number;
 	this->Frequency = other.Frequency;
-	cout << "ß êîíñòðóêòîð Voice" << endl;
+	cout << "ÃŸ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Voice" << endl;
 }
 
 Voice::~Voice()
 {
-	cout << "ß deñòðóêòîð Voice" << endl;
+	cout << "ÃŸ deÃ±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Voice" << endl;
 }
 
 class Picture : public Nota
@@ -160,7 +160,7 @@ Picture::Picture()
 	this->Number = 0;
 	this->x = 0;
 	this->y = 0;
-	cout << "ß êîíñòðóêòîð Picture" << endl;
+	cout << "ÃŸ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Picture" << endl;
 }
 
 Picture::Picture(int x, int y,int Number,double Frequency, string dataN, string dataO, int valueL) :Nota(dataN, dataO, valueL)
@@ -168,7 +168,7 @@ Picture::Picture(int x, int y,int Number,double Frequency, string dataN, string 
 	this->x = x;
 	this->Number = Number;
 	this->y = y;
-	cout << "ß êîíñòðóêòîð Picture" << endl;
+	cout << "ÃŸ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Picture" << endl;
 }
 
 Picture::Picture(const Picture& other):Nota(other.Name, other.Oktava, other.lenght)
@@ -176,12 +176,12 @@ Picture::Picture(const Picture& other):Nota(other.Name, other.Oktava, other.leng
 	this->Number = other.Number;
 	this->x = other.x;
 	this->y = other.y;
-	cout << "ß êîíñòðóêòîð Picture" << endl;
+	cout << "ÃŸ ÃªÃ®Ã­Ã±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Picture" << endl;
 }
 
 Picture::~Picture()
 {
-	cout << "ß deñòðóêòîð Picture" << endl;
+	cout << "ÃŸ deÃ±Ã²Ã°Ã³ÃªÃ²Ã®Ã° Picture" << endl;
 }
 
 int main()
