@@ -333,7 +333,7 @@ public:
 	}
 
 	Herbivorous operator ++(int value)
-	
+
 {
 		Herbivorous temp(*this);
 		this->Age++;
@@ -440,7 +440,7 @@ public:
 		this->LifeStatus = other.LifeStatus;
 		return *this;
 	}
-	
+
 	explicit operator Herbivorous&() {
 		Herbivorous comp(Name, Age, Coordinat.x, Coordinat.y);
 		return comp;
@@ -609,7 +609,7 @@ int main()
 	cout << Pre1 << endl;
 	Her2 = Pre1;
 	cout << Her2;
-	
+
 	cin >> Her1;
 	cout << Her1;
 	Pre2 = Her1;
@@ -617,7 +617,7 @@ int main()
 
 	Field F1;
 	F1[0].Print();
-	
-	
+
+
 	return 0;
 }
