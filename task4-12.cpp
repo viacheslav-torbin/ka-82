@@ -81,7 +81,6 @@ public:
   void printDate();
   void printClass() { cout << "Year : " << year << endl; }
 
-  ~Date() { day = month = year = 0; }
 };
 
 class Address {
@@ -166,7 +165,6 @@ public:
   void printPostSending();
   void printClass();
 
-  ~PostSending();
 };
 
 class RecommendLetter : public PostSending {
@@ -234,8 +232,6 @@ public:
 
   void printParcelPost();
   void printClass();
-
-  ~ParcelPost();
 };
 
 int main() {
@@ -411,11 +407,6 @@ void PostSending::printPostSending() {
 
 void PostSending::printClass() { this->to.printAddress(); }
 
-PostSending::~PostSending() {
-  this->to.~Address();
-  this->receipt.~Date();
-}
-
 RecommendLetter::RecommendLetter() {
   delivery = Date();
 
@@ -463,7 +454,6 @@ void RecommendLetter::printRecommendLetter() {
 void RecommendLetter::printClass() { this->getAddr().printAddress(); }
 
 RecommendLetter::~RecommendLetter() {
-  delivery.~Date();
   delete[] postman;
 }
 
@@ -501,5 +491,3 @@ void ParcelPost::printParcelPost() {
 }
 
 void ParcelPost::printClass() { this->getAddr().printAddress(); }
-
-ParcelPost::~ParcelPost() { width = weight = height = deep = 0; }
