@@ -1,6 +1,6 @@
 // #include <conio.h>
 #include <iostream>
-#include <string.h>
+#include <string>
 #include <time.h>
 using namespace std;
 
@@ -28,52 +28,24 @@ public:
     return max[month - 1];
   }
 
-  Date &setDay(int d) {
-    day = d;
-    return *this;
-  }
-  Date &setMonth(int m) {
-    month = m;
-    return *this;
-  }
-  Date &setYear(int y) {
-    year = y;
-    return *this;
-  }
+  void setDay(int d) { day = d; }
+
+  void setMonth(int m) { month = m; }
+
+  void setYear(int y) { year = y; }
 
   Date &operator++() {
     this->day++;
     return *this;
   }
+
   Date operator++(int value) {
     Date temp(*this);
     this->day++;
     return temp;
   }
-  friend Date operator+(const Date &d1, const Date &d2) {
-    Date d3;
-    d3.year = d1.year + d2.year;
-    if (d1.month + d2.month > 12) {
-      d3.month = d1.month + d2.month - 12;
-      d3.year++;
-    } else {
-      d3.month = d1.month + d2.month;
-    }
-    if (d1.day + d2.day > d3.maxdays()) {
-      d3.day = d1.day + d2.day - d3.maxdays();
-      d3.month++;
-    } else {
-      d3.day = d1.day + d2.day;
-    }
-    if (d3.month > 12) {
-      d3.month - 12;
-      d3.year++;
-    };
-    return d3;
-  }
-  bool operator==(const Date &other) {
-    return ((this->day == other.day) && (this->month == other.month) &&
-            (this->year == other.year));
+  bool operator==(const Date &d){
+    return ((day == d.day) && (month == d.month) && (year == d.year));
   }
   friend ostream &operator<<(ostream &out, Date &outstream);
   friend istream &operator>>(istream &in, Date &instream);
@@ -82,24 +54,18 @@ public:
 };
 
 class Address {
-  char *country, *street;
+  string country, street;
   int houseNum, apartmentNum;
 
 public:
   Address();
-  Address(char *myCountry, char *myStreet, int myHouseNum, int myApartmentNum);
+  Address(string myCountry, string myStreet, int myHouseNum, int myApartmentNum);
   Address(Address &from);
 
-  Address &setCountry(char *myCountry);
-  Address &setStreet(char *myStreet);
-  Address &setHouse(int num) {
-    houseNum = num;
-    return *this;
-  }
-  Address &setApartment(int num) {
-    apartmentNum = num;
-    return *this;
-  }
+  void setCountry(string myCountry);
+  void setStreet(string myStreet);
+  void setHouse(int num) { houseNum = num; }
+  void setApartment(int num) { apartmentNum = num; }
 
   int getHouse() { return houseNum; }
   int getApartment() { return apartmentNum; }
@@ -107,14 +73,14 @@ public:
   bool operator==(const Address &other) {
     return ((this->houseNum == other.houseNum) &&
             (this->apartmentNum == other.apartmentNum) &&
-            !(strcmp(this->country, other.country)) &&
-            !(strcmp(this->street, other.street)));
+            (this->country == other.country) &&
+            (this->street == other.street));
   }
   friend ostream &operator<<(ostream &out, Address &outstream);
   friend istream &operator>>(istream &in, Address &instream);
 
-  char *getCountry() { return country; }
-  char *getStreet() { return street; }
+  string getCountry() { return country; }
+  string getStreet() { return street; }
 
   void printAddress() {
     cout << "Country: " << country << ", " << street << " st. "
@@ -148,21 +114,18 @@ public:
     in >> p.receipt;
     return in;
   }
-  PostSending(char *myCountry, char *myStreet, int myHouseNum,
+  PostSending(string myCountry, string myStreet, int myHouseNum,
               int myApartmentNum, int d, int m, int y, double c);
   PostSending(PostSending &from);
 
-  PostSending &setCost(double c) {
+  void setCost(double c) {
     cost = c;
-    return *this;
   }
-  PostSending &setAddr(Address a) {
+  void setAddr(Address a) {
     to = Address(a);
-    return *this;
   }
-  PostSending &setDate(Date rec) {
+  void setDate(Date rec) {
     receipt = Date(rec);
-    return *this;
   }
 
   double getCost() { return cost; }
@@ -177,6 +140,7 @@ public:
 
   void printPostSending();
   virtual void printClass();
+  virtual ~PostSending(){};
 };
 
 class ParcelPost : public PostSending {
@@ -184,7 +148,7 @@ class ParcelPost : public PostSending {
 
 public:
   ParcelPost();
-  ParcelPost(char *myCountry, char *myStreet, int myHouseNum,
+  ParcelPost(string myCountry, string myStreet, int myHouseNum,
              int myApartmentNum, int d, int m, int y, double c, int myWeight,
              int myWidth, int myHeight, int myDeep);
   ParcelPost(ParcelPost &from);
@@ -221,19 +185,19 @@ public:
 class RecommendLetter : public PostSending {
 public:
   RecommendLetter();
-  RecommendLetter(char *myCountry, char *myStreet, int myHouseNum,
+  RecommendLetter(string myCountry, string myStreet, int myHouseNum,
                   int myApartmentNum, int recd, int recm, int recy, double c,
-                  int deld, int delm, int dely, char *myPostman);
+                  int deld, int delm, int dely, string myPostman);
   RecommendLetter(RecommendLetter &from);
   RecommendLetter &setDeliveryDate(Date d) {
     delivery = Date(d);
     return *this;
   }
-  RecommendLetter &setPostman(char *myPostman);
+  void setPostman(string myPostman);
 
   Date &getDeliveryDate() { return delivery; }
 
-  char *getPostman() { return postman; }
+  string getPostman() { return postman; }
 
   void printRecommendLetter();
   virtual void printClass();
@@ -249,11 +213,11 @@ public:
     p.setCost(0.0);
     return p;
   };
-  ~RecommendLetter();
+  virtual ~RecommendLetter();
 
 private:
   Date delivery;
-  char *postman;
+  string postman;
 };
 
 class Post {
@@ -287,10 +251,10 @@ int main() {
   P1.print();
   RecommendLetter r1, r2;
   ParcelPost p1, p2;
-  p1.printClass();
+  r1.printClass();
   p1 = r1;
   p1.printClass();
-  r2.printClass();
+  p2.printClass();
   r2 = (RecommendLetter)p2;
   r2.printClass();
   return 0;
@@ -325,7 +289,6 @@ istream &operator>>(istream &in, Address &instream) {
   in >> instream.country;
   cout << "Street : " << endl;
   in >> instream.street;
-  fflush(stdin);
   cout << "Apartment number : " << endl;
   in >> instream.apartmentNum;
   cout << "House number: " << endl;
@@ -349,53 +312,36 @@ void Date::printDate() {
 }
 
 Address::Address() {
-  country = new char[10];
-  strcpy(country, "NoCountry");
-  street = new char[9];
-  strcpy(street, "NoStreet");
+  country = "NoCountry";
+  street = "NoStreet";
   houseNum = -1;
   apartmentNum = -1;
 }
 
-Address::Address(char *myCountry, char *myStreet, int myHouseNum,
+Address::Address(string myCountry, string myStreet, int myHouseNum,
                  int myApartmentNum) {
-  country = new char[strlen(myCountry) + 1];
-  strcpy(country, myCountry);
-  street = new char[strlen(myStreet) + 1];
-  strcpy(street, myStreet);
+  country = myCountry;
+  street = myStreet;
   houseNum = myHouseNum;
   apartmentNum = myApartmentNum;
 }
 
 Address::Address(Address &from) {
-  country = new char[strlen(from.country) + 1];
-  strcpy(country, from.country);
-
-  street = new char[strlen(from.street) + 1];
-  strcpy(street, from.street);
-
+  country = from.country;
+  street = from.street;
   houseNum = from.houseNum;
   apartmentNum = from.apartmentNum;
 }
 
-Address &Address::setCountry(char *myCountry) {
-  delete[] country;
-  country = new char[strlen(myCountry) + 1];
-  strcpy(country, myCountry);
-  return *this;
+void Address::setCountry(string myCountry) {
+  country = myCountry;
 }
 
-Address &Address::setStreet(char *myStreet) {
-  delete[] street;
-  street = new char[strlen(myStreet) + 1];
-  strcpy(street, myStreet);
-  return *this;
+void Address::setStreet(string myStreet) {
+  street =  myStreet;
 }
 
-Address::~Address() {
-  delete[] country;
-  delete[] street;
-}
+Address::~Address() {}
 
 PostSending::PostSending() {
   cost = 0.0;
@@ -403,7 +349,7 @@ PostSending::PostSending() {
   receipt = Date(1, 1, 1970);
 }
 
-PostSending::PostSending(char *myCountry, char *myStreet, int myHouseNum,
+PostSending::PostSending(string myCountry, string myStreet, int myHouseNum,
                          int myApartmentNum, int d, int m, int y, double c)
     : to(myCountry, myStreet, myHouseNum, myApartmentNum), receipt(d, m, y),
       cost(c) {
@@ -411,8 +357,8 @@ PostSending::PostSending(char *myCountry, char *myStreet, int myHouseNum,
 }
 
 PostSending::PostSending(PostSending &from) {
-  to = Address(from.to);
-  receipt = Date(from.receipt);
+  to = from.to;
+  receipt = from.receipt;
   cost = from.cost;
 }
 
@@ -430,20 +376,17 @@ void PostSending::printClass() {
 
 RecommendLetter::RecommendLetter() {
   delivery = Date();
-
-  postman = new char[10];
-  strcpy(postman, "NoPostman");
+  postman = "NoPostman";
 }
 
-RecommendLetter::RecommendLetter(char *myCountry, char *myStreet,
+RecommendLetter::RecommendLetter(string myCountry, string myStreet,
                                  int myHouseNum, int myApartmentNum, int recd,
                                  int recm, int recy, double c, int deld,
-                                 int delm, int dely, char *myPostman)
+                                 int delm, int dely, string myPostman)
     : PostSending(myCountry, myStreet, myHouseNum, myApartmentNum, recd, recm,
                   recy, c),
       delivery(deld, delm, dely) {
-  postman = new char[strlen(myPostman) + 1];
-  strcpy(postman, myPostman);
+  postman = myPostman;
 }
 
 RecommendLetter::RecommendLetter(RecommendLetter &from)
@@ -455,13 +398,11 @@ RecommendLetter::RecommendLetter(RecommendLetter &from)
   this->setDate(from.getDate());
   this->setCost(from.getCost());
   delivery = Date(from.delivery);
-  postman = new char[strlen(from.postman) + 1];
-  strcpy(postman, from.postman);
+  postman = from.postman;
 }
 
-RecommendLetter &RecommendLetter::setPostman(char *myPostman) {
-  postman = new char[strlen(myPostman) + 1];
-  strcpy(postman, myPostman);
+void RecommendLetter::setPostman(string myPostman) {
+  postman = myPostman;
 }
 
 void RecommendLetter::printRecommendLetter() {
@@ -475,16 +416,17 @@ void RecommendLetter::printRecommendLetter() {
 void RecommendLetter::printClass() {
   cout << "It's me, RecommendLetter" << endl;
   this->getAddr().printAddress();
+  cout << "Postman:" << postman << endl;
 }
 
-RecommendLetter::~RecommendLetter() { delete[] postman; }
+RecommendLetter::~RecommendLetter() {}
 
 ParcelPost::ParcelPost() {
   PostSending();
   weight = width = height = deep = 0;
 }
 
-ParcelPost::ParcelPost(char *myCountry, char *myStreet, int myHouseNum,
+ParcelPost::ParcelPost(string myCountry, string myStreet, int myHouseNum,
                        int myApartmentNum, int d, int m, int y, double c,
                        int myWeight, int myWidth, int myHeight, int myDeep)
     : PostSending(myCountry, myStreet, myHouseNum, myApartmentNum, d, m, y, c) {
@@ -515,6 +457,10 @@ void ParcelPost::printParcelPost() {
 void ParcelPost::printClass() {
   cout << "It's me, ParcelPost" << endl;
   this->getAddr().printAddress();
+  cout << "Weight:" << weight<< endl;
+  cout << "Width:" << width << endl;
+  cout << "Height:" << height << endl;
+  cout << "Deep:" << deep << endl;
 }
 
 Post::Post() {
@@ -529,7 +475,7 @@ Post::Post(int s) {
   this->size = s;
   char bttn;
   storage = new PostSending[size];
-  for (int i = 0; i < size; i++) {
+  for (int i = 0; i < this->size; i++) {
     cout << "Do you want to create default post sending (Y/N)" << endl;
     cin >> bttn;
     if (tolower(bttn) == tolower('N')) {
@@ -544,8 +490,7 @@ RecommendLetter::RecommendLetter(ParcelPost p) {
   this->to = p.getAddr();
   this->receipt = p.getDate();
   this->delivery = Date();
-  this->postman = new char[5];
-  strcpy(this->postman, "None");
+  this->postman =  "None";
 };
 
 Post::Post(const Post &p) {
