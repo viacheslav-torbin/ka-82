@@ -15,7 +15,7 @@ bool are_equal(T *a, T *b, int size){
 }
 
 bool are_equal(char* a, char* b){
-  return !(abs(strcmp(a,b)));
+  return (strcmp(a,b) == 0);
 }
 
 
