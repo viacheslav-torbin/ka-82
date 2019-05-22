@@ -146,6 +146,9 @@ int main() {
   c1.print();
   Book b1, b2;
   Music m1, m2;
+  m1.print();
+  b1 = m1;
+  b1.print();
   return 0;
 }
 
