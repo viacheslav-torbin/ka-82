@@ -237,6 +237,7 @@ public:
   Post(const Post &p);
   ~Post() { delete[] storage; }
   void print() {
+    cout << "Printing the post..." << endl;
     for (int i = 0; i < size; i++) {
       storage[i].printPostSending();
     }
@@ -249,14 +250,17 @@ int main() {
   cin >> count;
   Post P1(count);
   P1.print();
-  RecommendLetter r1, r2;
-  ParcelPost p1, p2;
-  r1.printClass();
+  cout << endl;
+  RecommendLetter r1("Ukraine", "Kreshatic", 1, 2, 3, 4, 5, 6.6, 11, 11, 2011, "NONE");
+  ParcelPost p1("USA", "Groove str.", 1, 2, 3, 4, 5, 11.11, 14, 12, 2008, 12);
+  cout << "Start of the type conversations " << endl;
+  cout << "Conversation of RecommendLetter to ParcelPost: " << endl;
   p1 = r1;
   p1.printClass();
-  p2.printClass();
-  r2 = (RecommendLetter)p2;
-  r2.printClass();
+  cout << endl;
+  cout << "Conversation of ParcelPost to ReccomendLetter: " << endl;
+  r1 = (RecommendLetter)p1;
+  r1.printClass();
   return 0;
 }
 ostream &operator<<(ostream &out, Date &outstream) {
