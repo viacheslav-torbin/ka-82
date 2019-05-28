@@ -251,9 +251,16 @@ int main() {
   Post P1(count);
   P1.print();
   cout << endl;
+  PostSending a;
+  RecommendLetter b;
+  ParcelPost c;
+  PostSending  * arr[3] = {&a, &b, &c};
+  for (int i = 0; i < 3; i++) {
+    arr[i]->printClass();
+  }
   RecommendLetter r1("Ukraine", "Kreshatic", 1, 2, 3, 4, 5, 6.6, 11, 11, 2011, "NONE");
   ParcelPost p1("USA", "Groove str.", 1, 2, 3, 4, 5, 11.11, 14, 12, 2008, 12);
-  cout << "Start of the type conversations " << endl;
+  cout << endl << "Start of the type conversations " << endl;
   cout << "Conversation of RecommendLetter to ParcelPost: " << endl;
   p1 = r1;
   p1.printClass();
@@ -420,7 +427,7 @@ void RecommendLetter::printRecommendLetter() {
 void RecommendLetter::printClass() {
   cout << "It's me, RecommendLetter" << endl;
   this->getAddr().printAddress();
-  cout << "Postman:" << postman << endl;
+  cout << "Postman: " << postman << endl;
 }
 
 RecommendLetter::~RecommendLetter() {}
